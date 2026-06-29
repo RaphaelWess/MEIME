@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh repo *)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "PowerShell(python --version)",
+      "PowerShell(uv --version)",
+      "PowerShell(ffmpeg -version 2>&1)",
+      "PowerShell(winget install Python.Python.3.12 --silent --accept-package-agreements --accept-source-agreements 2>&1)",
+      "PowerShell(winget install Gyan.FFmpeg --silent --accept-package-agreements --accept-source-agreements 2>&1)",
+      "PowerShell(powershell -ExecutionPolicy Bypass -c \"irm https://astral.sh/uv/install.ps1 | iex\" 2>&1)",
+      "PowerShell(if \\(-not \\(Test-Path \"$env:USERPROFILE\\\\Developer\"\\)\\) { New-Item -ItemType Directory -Path \"$env:USERPROFILE\\\\Developer\" }; git clone https://github.com/browser-use/video-use \"$env:USERPROFILE\\\\Developer\\\\video-use\" 2>&1)"
+    ]
+  }
+}
