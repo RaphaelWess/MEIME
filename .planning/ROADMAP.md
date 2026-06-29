@@ -80,7 +80,7 @@ Plans:
   2. Dados do CNPJ sao salvos em `empresa_mei` apos consulta bem-sucedida — reabrir o app nao pede CNPJ novamente
   3. Usuario define atividade principal e data de abertura do MEI; ambos ficam persistidos e sao exibidos na tela de perfil
 
-**Plans**: 2/4 plans executed
+**Plans**: 3/4 plans executed
 Plans:
 **Wave 1**
 
@@ -92,7 +92,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 02-03-PLAN.md — Onboarding UI: cnpj.ts utils + useCnpjMask + useOnboardingCnpj + full OnboardingPage with BrasilAPI lookup + save flow
+- [x] 02-03-PLAN.md — Onboarding UI: cnpj.ts utils + useCnpjMask + useOnboardingCnpj + full OnboardingPage with BrasilAPI lookup + save flow
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -230,7 +230,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Fundacao e Infraestrutura | 6/6 | Complete   | 2026-06-29 |
-| 2. Onboarding MEI | 2/4 | In Progress|  |
+| 2. Onboarding MEI | 3/4 | In Progress|  |
 | 3. Controle Financeiro Core | 0/TBD | Not started | - |
 | 4. Inteligencia de Faturamento | 0/TBD | Not started | - |
 | 5. Calendario de Obrigacoes | 0/TBD | Not started | - |
