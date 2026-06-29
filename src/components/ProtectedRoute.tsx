@@ -1,26 +1,30 @@
 import React from 'react'
 import { Navigate } from 'react-router'
 import { useAuthStore } from '@/stores/auth.store'
+import { useEmpresaStore } from '@/stores/empresa.store'
 
 interface ProtectedRouteProps {
   children: React.ReactNode
 }
 
 /**
- * ProtectedRoute — guards child routes behind auth check.
+ * ProtectedRoute — guards child routes behind auth + empresa check.
  *
- * Three cases:
- * 1. loading === true → show loading indicator (prevents auth flash — T-1-03 / Pitfall 6)
- * 2. loading === false && user === null → redirect to /welcome
- * 3. loading === false && user !== null → render children
+ * Four-state logic:
+ * 1. authLoading OR empresaLoading → show loading indicator (prevents flash — T-1-03 / T-02-03)
+ * 2. user === null → Navigate to="/welcome" replace
+ * 3. user !== null AND empresa === null → Navigate to="/onboarding" replace (D-01: forced after first login)
+ * 4. user !== null AND empresa !== null → render children
  *
- * AuthProvider sets loading=true initially, loading=false after getSession() resolves,
- * so no redirect fires until the session is confirmed (no "flash" to /welcome).
+ * AuthProvider sets authLoading=false after getSession() resolves.
+ * EmpresaProvider sets empresaLoading=false after getForCurrentUser() resolves.
+ * No redirect fires until BOTH resolve — prevents premature navigation (Pitfall 6).
  */
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { user, loading } = useAuthStore()
+  const { user, loading: authLoading } = useAuthStore()
+  const { empresa, loading: empresaLoading } = useEmpresaStore()
 
-  if (loading) {
+  if (authLoading || empresaLoading) {
     return (
       <div
         className="flex items-center justify-center min-h-screen"
@@ -34,6 +38,10 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
 
   if (user === null) {
     return <Navigate to="/welcome" replace />
+  }
+
+  if (empresa === null) {
+    return <Navigate to="/onboarding" replace />
   }
 
   return <React.Fragment>{children}</React.Fragment>
