@@ -807,22 +807,22 @@ This is a live production risk. The implementation must be alphanumeric-ready fr
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **OpenCNPJ response shape**
+1. **OpenCNPJ response shape** *(RESOLVED: executor verifies live call on first task)*
    - What we know: Endpoint exists at `https://api.opencnpj.org/cnpj/{cnpj}`, documentation not reachable
    - What's unclear: Exact field names — `cnae_principal` vs `cnae` vs other; string vs integer `situacao_cadastral`
-   - Recommendation: Do a live `fetch` in browser devtools against a known CNPJ on first task, confirm fields, update normalization function accordingly
+   - Resolution: Plan 02-03 Task 1 explicitly instructs the executor to verify against a live call and adjust field mapping if needed before writing the normalization function. Manual fallback mode ensures this cannot block the phase.
 
-2. **BrasilAPI alphanumeric CNPJ readiness**
+2. **BrasilAPI alphanumeric CNPJ readiness** *(RESOLVED: algorithm is alphanumeric-compatible; gap covered by fallback+manual)*
    - What we know: Production rollout is July 6, 2026 (current month); BrasilAPI has not explicitly published readiness
    - What's unclear: Whether BrasilAPI's upstream (Receita Federal / Minha Receita) returns new-format CNPJs yet
-   - Recommendation: Gate check — if BrasilAPI returns 404 for a valid alphanumeric CNPJ, the fallback + manual mode handle it gracefully; no blocking action needed
+   - Resolution: `isValidCnpj` uses ASCII-minus-48 algorithm (handles A-Z + 0-9). If BrasilAPI returns 404 for alphanumeric CNPJs, OpenCNPJ fallback triggers; if both fail, manual entry mode activates. No blocking path.
 
-3. **EmpresaProvider placement in provider tree**
+3. **EmpresaProvider placement in provider tree** *(RESOLVED: plan instructs executor to check main.tsx before editing)*
    - What we know: Phase 1 has AuthProvider in `src/providers/`; BrowserRouter is in App.tsx
    - What's unclear: Whether EmpresaProvider should be inside or outside BrowserRouter; whether it should be a child of AuthProvider
-   - Recommendation: EmpresaProvider should be INSIDE BrowserRouter (it uses no routing) and AFTER AuthProvider (it depends on `user` from auth store); wrap both providers sequentially in main.tsx or App.tsx
+   - Resolution: Plan 02-02 Task 1 action says "Check main.tsx for current provider order before editing" and specifies AFTER AuthProvider, INSIDE existing provider tree. The EmpresaProvider uses no routing APIs so BrowserRouter placement is irrelevant.
 
 ---
 
