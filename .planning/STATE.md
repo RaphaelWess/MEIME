@@ -5,15 +5,15 @@ milestone_name: milestone
 current_phase: 01
 current_phase_name: fundacao-e-infraestrutura
 status: executing
-stopped_at: Completed 01-02-PLAN.md
-last_updated: "2026-06-29T18:32:38.987Z"
+stopped_at: Completed 01-05-PLAN.md
+last_updated: "2026-06-29T18:39:11.808Z"
 last_activity: 2026-06-29
 last_activity_desc: Phase 01 execution started
 progress:
   total_phases: 10
   completed_phases: 0
   total_plans: 6
-  completed_plans: 4
+  completed_plans: 5
   percent: 0
 ---
 
@@ -29,7 +29,7 @@ See: .planning/PROJECT.md (updated 2026-06-28)
 ## Current Position
 
 Phase: 01 (fundacao-e-infraestrutura) — EXECUTING
-Plan: 4 of 6
+Plan: 5 of 6
 Status: Ready to execute
 Last activity: 2026-06-29 — Phase 01 execution started
 
@@ -58,6 +58,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase 01 P01 | 20min | 2 tasks | 1 files |
 | Phase 01 P02 | 15min | 2 tasks | 22 files |
 | Phase 01 P04 | 5min | 2 tasks | 15 files |
+| Phase 01 P05 | 3min | 2 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,8 @@ Recent decisions affecting current work:
 - [Phase ?]: Single BrowserRouter rule (Pitfall 4)
 - [Phase ?]: D-03: /privacidade in two locations
 - [Phase ?]: D-11: service layer enforced in auth UI
+- [Phase ?]: AlertDialogTrigger uses @base-ui/react API (no asChild)
+- [Phase ?]: BottomNav Inicio active check exact match for /app
 
 ### Pending Todos
 
@@ -97,6 +100,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-29T18:32:38.974Z
-Stopped at: Completed 01-02-PLAN.md
+Last session: 2026-06-29T18:39:11.794Z
+Stopped at: Completed 01-05-PLAN.md
 Resume file: None
