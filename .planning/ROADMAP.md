@@ -13,7 +13,7 @@ MEIME entrega gestão financeira gratuita para MEI em 10 fases sequenciais. A fu
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Fundacao e Infraestrutura** - Schema Supabase + RLS, auth, scaffold React/Vite/Tailwind, PWA manifest, AppShell, anti-pause, privacidade
+- [x] **Phase 1: Fundacao e Infraestrutura** - Schema Supabase + RLS, auth, scaffold React/Vite/Tailwind, PWA manifest, AppShell, anti-pause, privacidade (completed 2026-06-29)
 - [ ] **Phase 2: Onboarding MEI** - Busca CNPJ via BrasilAPI, salva empresa_mei, perfil do MEI completo
 - [ ] **Phase 3: Controle Financeiro Core** - TransactionForm com mascara BRL, TransactionList, dashboard saldo+fluxo do mes
 - [ ] **Phase 4: Inteligência de Faturamento** - FaturamentoGauge com limite proporcional + Caminhoneiro, projecao, alertas 70/90/100/97200
@@ -40,7 +40,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. GitHub Actions health check executa `SELECT 1` periodicamente — projeto Supabase nao pausa
   5. Rota `/privacidade` acessivel sem login; exclusao de conta disponivel antes do primeiro usuario real
 
-**Plans**: 5/6 plans executed
+**Plans**: 6/6 plans complete
 Plans:
 **Wave 1**
 
@@ -64,7 +64,7 @@ Plans:
 
 **Wave 6** *(blocked on Wave 5 completion)*
 
-- [ ] 01-06-PLAN.md — Deploy Vercel + GitHub repo + PWA icons + GitHub Actions anti-pause
+- [x] 01-06-PLAN.md — Deploy Vercel + GitHub repo + PWA icons + GitHub Actions anti-pause
 
 **UI hint**: yes
 
@@ -212,7 +212,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Fundacao e Infraestrutura | 5/6 | In Progress|  |
+| 1. Fundacao e Infraestrutura | 6/6 | Complete   | 2026-06-29 |
 | 2. Onboarding MEI | 0/TBD | Not started | - |
 | 3. Controle Financeiro Core | 0/TBD | Not started | - |
 | 4. Inteligencia de Faturamento | 0/TBD | Not started | - |
