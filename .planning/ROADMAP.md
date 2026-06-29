@@ -36,7 +36,14 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. App abre no celular com AppShell e BottomNav navegavel; manifest PWA valido (instalavel no Chrome)
   4. GitHub Actions health check executa `SELECT 1` periodicamente — projeto Supabase nao pausa
   5. Rota `/privacidade` acessivel sem login; exclusao de conta disponivel antes do primeiro usuario real
-**Plans**: TBD
+**Plans**: 6 plans
+Plans:
+- [ ] 01-01-PLAN.md — Supabase project criação + schema migration 0001 (5 tabelas + RLS + delete_user)
+- [ ] 01-02-PLAN.md — Scaffold React+Vite+TypeScript + Tailwind 4 + shadcn/ui + Vitest
+- [ ] 01-03-PLAN.md — Supabase singleton client + currency.ts + auth store + providers + auth service
+- [ ] 01-04-PLAN.md — Auth UI: WelcomePage + AuthPage (email+password) + PrivacidadePage + ProtectedRoute
+- [ ] 01-05-PLAN.md — AppShell + BottomNav (5 abas) + FAB scaffold + ContaTab (logout + excluir conta)
+- [ ] 01-06-PLAN.md — Deploy Vercel + GitHub repo + PWA icons + GitHub Actions anti-pause
 **UI hint**: yes
 
 ### Phase 2: Onboarding MEI
