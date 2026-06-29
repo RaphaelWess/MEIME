@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router'
 import { useAuthStore } from '@/stores/auth.store'
+import { useEmpresaStore } from '@/stores/empresa.store'
 import { authService } from '@/services/auth.service'
+import { formatCnpj } from '@/utils/cnpj'
 import {
   AlertDialog,
   AlertDialogTrigger,
@@ -30,6 +32,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 export default function ContaTab() {
   const navigate = useNavigate()
   const user = useAuthStore((s) => s.user)
+  const empresa = useEmpresaStore((s) => s.empresa)
   const [deleteError, setDeleteError] = useState<string | null>(null)
 
   const userInitial = user?.email?.[0]?.toUpperCase() ?? '?'
@@ -67,6 +70,37 @@ export default function ContaTab() {
       </div>
 
       <Separator />
+
+      {/* Minha empresa — dados da empresa MEI (defensive guard: ProtectedRoute guarantees empresa exists) */}
+      {empresa && (
+        <>
+          <div className="py-4 space-y-3">
+            <p className="text-sm font-semibold text-zinc-700">Minha empresa</p>
+            <div className="space-y-1">
+              <p className="text-sm font-medium text-zinc-900">{empresa.razao_social}</p>
+              <p className="text-sm text-zinc-500">CNPJ: {formatCnpj(empresa.cnpj ?? '')}</p>
+              {empresa.atividade_principal && (
+                <p className="text-sm text-zinc-500">{empresa.atividade_principal}</p>
+              )}
+              {empresa.data_abertura_mei && (
+                <p className="text-sm text-zinc-500">
+                  Abertura:{' '}
+                  {new Date(empresa.data_abertura_mei + 'T00:00:00').toLocaleDateString('pt-BR')}
+                </p>
+              )}
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => navigate('/app/conta/empresa')}
+            >
+              Editar dados da empresa
+            </Button>
+          </div>
+
+          <Separator />
+        </>
+      )}
 
       {/* Privacy link (D-03 — second location after Welcome/Auth footer) */}
       <div className="py-4">

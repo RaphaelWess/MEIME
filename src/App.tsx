@@ -11,6 +11,7 @@ import FinancasTab from '@/pages/FinancasTab'
 import AgendaTab from '@/pages/AgendaTab'
 import CobrarTab from '@/pages/CobrarTab'
 import ContaTab from '@/pages/ContaTab'
+import EmpresaEditPage from '@/pages/EmpresaEditPage'
 
 /**
  * App — full React Router declarative route tree.
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="agenda" element={<AgendaTab />} />
           <Route path="cobrar" element={<CobrarTab />} />
           <Route path="conta" element={<ContaTab />} />
+          <Route path="conta/empresa" element={<EmpresaEditPage />} />
         </Route>
 
         {/* Catch-all: redirect unknown paths to /welcome */}
