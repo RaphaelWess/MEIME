@@ -40,7 +40,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. GitHub Actions health check executa `SELECT 1` periodicamente — projeto Supabase nao pausa
   5. Rota `/privacidade` acessivel sem login; exclusao de conta disponivel antes do primeiro usuario real
 
-**Plans**: 2/6 plans executed
+**Plans**: 3/6 plans executed
 Plans:
 **Wave 1**
 
@@ -52,7 +52,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 01-03-PLAN.md — Supabase singleton client + currency.ts + auth store + providers + auth service
+- [x] 01-03-PLAN.md — Supabase singleton client + currency.ts + auth store + providers + auth service
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -212,7 +212,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Fundacao e Infraestrutura | 2/6 | In Progress|  |
+| 1. Fundacao e Infraestrutura | 3/6 | In Progress|  |
 | 2. Onboarding MEI | 0/TBD | Not started | - |
 | 3. Controle Financeiro Core | 0/TBD | Not started | - |
 | 4. Inteligencia de Faturamento | 0/TBD | Not started | - |
