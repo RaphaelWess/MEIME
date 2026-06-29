@@ -2,18 +2,18 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 01
-current_phase_name: fundacao-e-infraestrutura
-status: phase-complete
-stopped_at: Completed 01-06-PLAN.md — Phase 01 complete
-last_updated: "2026-06-29T19:40:10.776Z"
+current_phase: 02
+current_phase_name: onboarding-mei
+status: executing
+stopped_at: Completed 02-02-PLAN.md — foundation layer complete
+last_updated: "2026-06-29T21:42:00.000Z"
 last_activity: 2026-06-29
-last_activity_desc: Phase 01 complete — app live at https://meime.vercel.app/
+last_activity_desc: Phase 02 Plan 02 complete — empresa service + store + guards
 progress:
   total_phases: 10
   completed_phases: 1
-  total_plans: 6
-  completed_plans: 6
+  total_plans: 10
+  completed_plans: 8
   percent: 10
 ---
 
@@ -24,14 +24,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-28)
 
 **Core value:** Projetar e alertar sobre o limite de faturamento (R$ 81 mil/ano) antes de estourar
-**Current focus:** Phase 01 — fundacao-e-infraestrutura
+**Current focus:** Phase 02 — onboarding-mei
 
 ## Current Position
 
-Phase: 01 (fundacao-e-infraestrutura) — COMPLETE (all 6/6 plans done)
-Plan: 6 of 6
-Status: Phase complete — ready for Phase 02
-Last activity: 2026-06-29 — Phase 01 complete, app live at https://meime.vercel.app/
+Phase: 02 (onboarding-mei) — EXECUTING
+Plan: 3 of 4
+Status: Executing Phase 02
+Last activity: 2026-06-29 — Plan 02-02 complete (foundation layer)
 
 Progress: [██████████] 100%
 
@@ -60,6 +60,7 @@ Progress: [██████████] 100%
 | Phase 01 P04 | 5min | 2 tasks | 15 files |
 | Phase 01 P05 | 3min | 2 tasks | 8 files |
 | Phase 01 P06 | 5min | 2 tasks | 4 files |
+| Phase 02 P02 | 5min | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -86,6 +87,9 @@ Recent decisions affecting current work:
 - [Phase 01-06]: Deployed to Vercel at https://meime.vercel.app/ — GitHub repo https://github.com/RaphaelWess/MEIME
 - [Phase 01-06]: Supabase project URL https://qgjqeqikogpzcuvhgpdl.supabase.co confirmed
 - [Phase 01-06]: Phase 01 complete — walking skeleton live in production, all 6 plans done
+- [Phase 02-02]: empresaService uses maybeSingle — returns null on no rows, avoids throw
+- [Phase 02-02]: EmpresaProvider placed inside AuthProvider (depends on user/authLoading)
+- [Phase 02-02]: ProtectedRoute 3-way guard: authLoading OR empresaLoading first, then user null → /welcome, empresa null → /onboarding
 
 ### Pending Todos
 
@@ -104,6 +108,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-29T19:40:10.759Z
-Stopped at: Completed 01-06-PLAN.md — Phase 01 complete, app live at https://meime.vercel.app/
+Last session: 2026-06-29T21:42:00.000Z
+Stopped at: Completed 02-02-PLAN.md — foundation layer (empresa service + store + guards + /onboarding route)
 Resume file: None
