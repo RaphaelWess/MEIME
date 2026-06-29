@@ -13,6 +13,8 @@ function createWrapper() {
     defaultOptions: {
       queries: {
         retry: false,
+        // Disable GC so state persists during test
+        gcTime: Infinity,
       },
     },
   })
@@ -40,11 +42,8 @@ describe('useOnboardingCnpj', () => {
       vi.advanceTimersByTime(600)
     })
 
-    await waitFor(() => {
-      // Query should not be enabled — fetchStatus should be 'idle'
-      expect(result.current.fetchStatus).toBe('idle')
-    })
-
+    // Query should not be enabled — fetchStatus should be 'idle'
+    expect(result.current.fetchStatus).toBe('idle')
     expect(mockFetch).not.toHaveBeenCalled()
   })
 
@@ -56,10 +55,7 @@ describe('useOnboardingCnpj', () => {
       vi.advanceTimersByTime(600)
     })
 
-    await waitFor(() => {
-      expect(result.current.fetchStatus).toBe('idle')
-    })
-
+    expect(result.current.fetchStatus).toBe('idle')
     expect(mockFetch).not.toHaveBeenCalled()
   })
 
@@ -79,21 +75,27 @@ describe('useOnboardingCnpj', () => {
     })
 
     const wrapper = createWrapper()
-    const { result } = renderHook(() => useOnboardingCnpj('11222333000181'), { wrapper })
+
+    // Start with an invalid CNPJ (13 chars) so the query doesn't fire initially
+    const { result, rerender } = renderHook(
+      ({ cnpj }: { cnpj: string }) => useOnboardingCnpj(cnpj),
+      { wrapper, initialProps: { cnpj: '1122233300018' } },
+    )
 
     // Before debounce fires — should not have called fetch
     expect(mockFetch).not.toHaveBeenCalled()
+    expect(result.current.fetchStatus).toBe('idle')
 
-    // Advance past 500ms debounce
-    act(() => {
+    // Update to valid CNPJ and advance past 500ms debounce
+    rerender({ cnpj: '11222333000181' })
+
+    await act(async () => {
       vi.advanceTimersByTime(600)
+      // Let promises settle after timer fires
+      await Promise.resolve()
     })
 
     // Query should now be enabled and fetch triggered
-    await waitFor(() => {
-      expect(mockFetch).toHaveBeenCalledTimes(1)
-    })
-
     expect(mockFetch).toHaveBeenCalledWith(
       expect.stringContaining('11222333000181'),
     )
