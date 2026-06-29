@@ -3,7 +3,7 @@ phase: 01-fundacao-e-infraestrutura
 plan: "06"
 subsystem: deploy-infra
 tags: [vercel, pwa, github-actions, anti-pause, deploy, icons, spa-routing]
-status: checkpoint
+status: complete
 dependency_graph:
   requires:
     - 01-05 (AppShell + all tab pages — navigation target for PWA)
@@ -14,6 +14,8 @@ dependency_graph:
     - public/icon-192.png (192x192 valid PNG — Chrome PWA installability)
     - public/icon-512.png (512x512 valid PNG — Chrome PWA installability)
     - .github/workflows/supabase-keep-alive.yml (anti-pause cron Mon+Thu 08:00 UTC)
+    - Live Vercel deployment at https://meime.vercel.app/
+    - GitHub repository at https://github.com/RaphaelWess/MEIME
   affects:
     - Phase 1 complete: walking skeleton deployable to production
     - All future phases: Vercel HTTPS URL is live deployment target
@@ -38,10 +40,12 @@ decisions:
   - "PWA icons generated programmatically with Node.js zlib (no canvas npm install) — green #16A34A background with white M glyph drawn via Bresenham lines"
   - "GitHub Secrets: SUPABASE_URL and SUPABASE_ANON_KEY without VITE_ prefix — these are workflow secrets, not Vite env vars (Pitfall 7 avoided)"
   - "Anti-pause cron: 0 8 * * 1,4 (Mon+Thu) = every ~3 days, well under Supabase 7-day inactivity threshold"
+  - "Deployed to Vercel at https://meime.vercel.app/ with GitHub repo https://github.com/RaphaelWess/MEIME"
+  - "Supabase project URL confirmed: https://qgjqeqikogpzcuvhgpdl.supabase.co"
 metrics:
-  duration: "~2 minutes"
+  duration: "~5 minutes (Task 1: ~2min automated + Task 2: human checkpoint)"
   completed_date: "2026-06-29"
-  tasks_completed: 1
+  tasks_completed: 2
   tasks_total: 2
   files_created: 4
   files_modified: 0
@@ -49,19 +53,24 @@ metrics:
 
 # Phase 01 Plan 06: Vercel Deploy + PWA + GitHub Actions Summary
 
-**One-liner:** vercel.json SPA rewrites + valid 192/512px PNG PWA icons + GitHub Actions Supabase anti-pause workflow (Mon+Thu cron + workflow_dispatch) — automated tasks complete, awaiting human deploy verification checkpoint.
+**One-liner:** vercel.json SPA rewrites + valid 192/512px PNG PWA icons + GitHub Actions Supabase anti-pause workflow (Mon+Thu cron) deployed to https://meime.vercel.app/ with GitHub repo at https://github.com/RaphaelWess/MEIME — Phase 1 walking skeleton complete.
 
 ## Tasks Completed
 
 | Task | Name | Commit | Files |
 |------|------|--------|-------|
 | 1 | vercel.json, PWA icons, and GitHub Actions anti-pause workflow | fe1d543 | vercel.json, public/icon-192.png, public/icon-512.png, .github/workflows/supabase-keep-alive.yml |
+| 2 | Deploy to Vercel + verify PWA + GitHub repo setup | (checkpoint — human action) | Live at https://meime.vercel.app/ |
 
-## Checkpoint: Task 2 — Awaiting Human Verification
+## Deployment Verification (Task 2 — Human Confirmed)
 
-**Status:** Paused at `type="checkpoint:human-verify"` — Task 2 requires human deployment steps.
-
-See checkpoint message below for exact instructions.
+| Check | Expected | Actual | Status |
+|-------|----------|--------|--------|
+| Vercel deployment live | https://*.vercel.app | https://meime.vercel.app/ | PASS |
+| GitHub repository created | github.com/RaphaelWess/MEIME | https://github.com/RaphaelWess/MEIME | PASS |
+| Supabase project URL | https://XXXX.supabase.co | https://qgjqeqikogpzcuvhgpdl.supabase.co | PASS |
+| App loads without errors | WelcomePage loads | Confirmed by user | PASS |
+| All verification steps | Steps 1–6 in plan | User confirmed "deploy verificado" | PASS |
 
 ## Verification Results (Task 1 — Automated)
 
@@ -77,6 +86,25 @@ See checkpoint message below for exact instructions.
 | .env.local in .gitignore | yes | yes (.env.local listed) | PASS |
 | .env.local not tracked by git | yes | confirmed | PASS |
 
+## Live Deployment Details
+
+| Item | Value |
+|------|-------|
+| Vercel URL | https://meime.vercel.app/ |
+| GitHub Repository | https://github.com/RaphaelWess/MEIME |
+| Supabase Project URL | https://qgjqeqikogpzcuvhgpdl.supabase.co |
+| Supabase Region | South America (sa-east-1) |
+
+## Phase 1 Success Criteria — Final Status
+
+| Criterion | Status |
+|-----------|--------|
+| Usuario consegue criar conta, fazer login e logout via Supabase Auth | COMPLETE (Plan 01-03, 01-04) |
+| Schema Supabase com 5 tabelas + RLS aplicado | COMPLETE (Plan 01-01) |
+| App abre no celular com AppShell e BottomNav; manifest PWA valido | COMPLETE (Plans 01-02, 01-05, 01-06) |
+| GitHub Actions health check executa periodicamente — Supabase nao pausa | COMPLETE (Plan 01-06) |
+| Rota /privacidade acessivel sem login; exclusao de conta disponivel | COMPLETE (Plan 01-04) |
+
 ## Deviations from Plan
 
 ### Auto-fixed Issues
@@ -90,17 +118,18 @@ See checkpoint message below for exact instructions.
 
 ## Known Stubs
 
-None. All automated artifacts in Task 1 are fully functional:
-- vercel.json is complete and valid
+None. All artifacts are fully functional:
+- vercel.json is complete and valid with SPA rewrites active on Vercel
 - PWA icons are valid PNGs (not placeholder text files)
-- GitHub Actions workflow is complete (pending GitHub Secrets setup by user)
+- GitHub Actions workflow is complete (GitHub Secrets configured by user)
+- App is live at https://meime.vercel.app/
 
 ## Threat Surface Scan
 
 No new threat surface beyond the plan's threat model:
-- T-1-02 mitigated by design: vercel.json contains NO env vars or secrets — it is a static routing config only. Supabase service_role key is NOT referenced anywhere in Task 1 artifacts.
-- T-1-07 mitigated: GitHub Actions workflow uses SUPABASE_URL and SUPABASE_ANON_KEY (no VITE_ prefix) exactly as specified. No secret confusion possible.
-- T-1-08 mitigated: Anti-pause workflow scheduled for Mon+Thu (every ~3 days) with workflow_dispatch for manual verification before first scheduled run.
+- T-1-02 mitigated: Vercel env vars contain ONLY VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY — service_role key NOT added. Confirmed by user during Vercel setup.
+- T-1-07 mitigated: GitHub Actions workflow uses SUPABASE_URL and SUPABASE_ANON_KEY (no VITE_ prefix). Confirmed by automated check (PASS) and user adding secrets without VITE_ prefix.
+- T-1-08 mitigated: Anti-pause workflow scheduled Mon+Thu (every ~3 days) with manual workflow_dispatch verified by user (Step 5).
 
 ## Self-Check: PASSED
 
@@ -111,3 +140,6 @@ No new threat surface beyond the plan's threat model:
 | public/icon-512.png | FOUND |
 | .github/workflows/supabase-keep-alive.yml | FOUND |
 | commit fe1d543 (Task 1) | FOUND |
+| Live URL https://meime.vercel.app/ | CONFIRMED (human) |
+| GitHub repo https://github.com/RaphaelWess/MEIME | CONFIRMED (human) |
+| Phase 1 all 6 plans complete | CONFIRMED |
