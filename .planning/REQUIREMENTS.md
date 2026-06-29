@@ -102,14 +102,31 @@ O MVP está pronto quando:
 
 ## Traceability
 
-| Requisito | Fase | Status |
-|-----------|------|--------|
-| ONB-01, ONB-02, ONB-03 | Fase 2 | Pendente |
-| FIN-01, FIN-02, FIN-05 | Fase 3 | Pendente |
-| FAT-01, FAT-02, FAT-03 | Fase 4 | Pendente |
-| OBR-01, OBR-02, OBR-03, OBR-04 | Fase 5 | Pendente |
-| PIX-01, PIX-02, PIX-03 | Fase 6 | Pendente |
-| FIN-03, FIN-04 | Fase 7 | Pendente |
-| NFS-01, NFS-02, NFS-03, NFS-04 | Fase 8 | Pendente |
-| REL-01, REL-02 | Fase 9 | Pendente |
-| Infra/Auth/LGPD | Fase 1 | Pendente |
+| Requisito | Fase | Nome da Fase | Status |
+|-----------|------|--------------|--------|
+| INFRA/Auth/LGPD | Phase 1 | Fundacao e Infraestrutura | Pendente |
+| ONB-01 | Phase 2 | Onboarding MEI | Pendente |
+| ONB-02 | Phase 2 | Onboarding MEI | Pendente |
+| ONB-03 | Phase 2 | Onboarding MEI | Pendente |
+| FIN-01 | Phase 3 | Controle Financeiro Core | Pendente |
+| FIN-02 | Phase 3 | Controle Financeiro Core | Pendente |
+| FIN-05 | Phase 3 | Controle Financeiro Core | Pendente |
+| FAT-01 | Phase 4 | Inteligencia de Faturamento | Pendente |
+| FAT-02 | Phase 4 | Inteligencia de Faturamento | Pendente |
+| FAT-03 | Phase 4 | Inteligencia de Faturamento | Pendente |
+| OBR-01 | Phase 5 | Calendario de Obrigacoes | Pendente |
+| OBR-02 | Phase 5 | Calendario de Obrigacoes | Pendente |
+| OBR-03 | Phase 5 | Calendario de Obrigacoes | Pendente |
+| OBR-04 | Phase 5 | Calendario de Obrigacoes | Pendente |
+| PIX-01 | Phase 6 | Cobranca PIX | Pendente |
+| PIX-02 | Phase 6 | Cobranca PIX | Pendente |
+| PIX-03 | Phase 6 | Cobranca PIX | Pendente |
+| FIN-03 | Phase 7 | Importacao e Anexos | Pendente |
+| FIN-04 | Phase 7 | Importacao e Anexos | Pendente |
+| NFS-01 | Phase 8 | Assistente DAS/NFS-e | Pendente |
+| NFS-02 | Phase 8 | Assistente DAS/NFS-e | Pendente |
+| NFS-03 | Phase 8 | Assistente DAS/NFS-e | Pendente |
+| NFS-04 | Phase 8 | Assistente DAS/NFS-e | Pendente |
+| REL-01 | Phase 9 | Relatorios | Pendente |
+| REL-02 | Phase 9 | Relatorios | Pendente |
+| PWA/Polish | Phase 10 | PWA Instalavel + Polish | Pendente |
