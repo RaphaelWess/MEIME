@@ -113,12 +113,12 @@ Plans:
   3. Dashboard exibe saldo do mes, total de entradas, total de saidas e lucro do mes corrente com dados atualizados apos cada lancamento
   4. TransactionList exibe historico de transacoes com filtro por mes; cada item mostra valor, categoria, tipo PF/PJ e data
 
-**Plans**: 1/6 plans executed
+**Plans**: 2/6 plans executed
 Plans:
 **Wave 1**
 
 - [x] 03-01-PLAN.md — Wave 0: Install shadcn Drawer + Skeleton; write 3 failing test stubs (TDD Red)
-- [ ] 03-02-PLAN.md — Wave 1a: categories.ts + transacao.service.ts + service tests GREEN
+- [x] 03-02-PLAN.md — Wave 1a: categories.ts + transacao.service.ts + service tests GREEN
 - [ ] 03-03-PLAN.md — Wave 1b: useCurrencyInput.ts + tests GREEN + financas.store.ts
 
 **Wave 2** *(blocked on Wave 1 completion)*
@@ -250,7 +250,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 |-------|----------------|--------|-----------|
 | 1. Fundacao e Infraestrutura | 6/6 | Complete   | 2026-06-29 |
 | 2. Onboarding MEI | 3/4 | In Progress|  |
-| 3. Controle Financeiro Core | 1/6 | In Progress|  |
+| 3. Controle Financeiro Core | 2/6 | In Progress|  |
 | 4. Inteligencia de Faturamento | 0/TBD | Not started | - |
 | 5. Calendario de Obrigacoes | 0/TBD | Not started | - |
 | 6. Cobranca PIX | 0/TBD | Not started | - |
