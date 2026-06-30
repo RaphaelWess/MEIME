@@ -2,18 +2,18 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 02
-current_phase_name: onboarding-mei
+current_phase: 03
+current_phase_name: controle-financeiro-core
 status: executing
-stopped_at: Phase 3 context gathered
-last_updated: "2026-06-30T09:38:33.117Z"
-last_activity: 2026-06-29
-last_activity_desc: Plan 02-02 complete (foundation layer)
+stopped_at: Completed 03-01-PLAN.md
+last_updated: "2026-06-30T15:26:10.001Z"
+last_activity: 2026-06-30
+last_activity_desc: Phase 03 execution started
 progress:
   total_phases: 10
   completed_phases: 2
-  total_plans: 10
-  completed_plans: 10
+  total_plans: 16
+  completed_plans: 11
   percent: 20
 ---
 
@@ -24,14 +24,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-06-28)
 
 **Core value:** Projetar e alertar sobre o limite de faturamento (R$ 81 mil/ano) antes de estourar
-**Current focus:** Phase 02 — onboarding-mei
+**Current focus:** Phase 03 — controle-financeiro-core
 
 ## Current Position
 
-Phase: 02 (onboarding-mei) — EXECUTING
-Plan: 4 of 4
+Phase: 03 (controle-financeiro-core) — EXECUTING
+Plan: 2 of 6
 Status: Ready to execute
-Last activity: 2026-06-29 — Plan 02-02 complete (foundation layer)
+Last activity: 2026-06-30 — Phase 03 execution started
 
 Progress: [██████████] 100%
 
@@ -61,6 +61,7 @@ Progress: [██████████] 100%
 | Phase 01 P05 | 3min | 2 tasks | 8 files |
 | Phase 01 P06 | 5min | 2 tasks | 4 files |
 | Phase 02 P02 | 5min | 2 tasks | 10 files |
+| Phase 03 P01 | 15min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -90,6 +91,8 @@ Recent decisions affecting current work:
 - [Phase 02-02]: empresaService uses maybeSingle — returns null on no rows, avoids throw
 - [Phase 02-02]: EmpresaProvider placed inside AuthProvider (depends on user/authLoading)
 - [Phase 02-02]: ProtectedRoute 3-way guard: authLoading OR empresaLoading first, then user null → /welcome, empresa null → /onboarding
+- [Phase ?]: shadcn Drawer installed via vaul (not @base-ui/react) — no @radix-ui direct imports; vaul is the actual base-nova Drawer primitive
+- [Phase ?]: TDD Red phase: useCurrencyInput.test.ts, transacao.service.test.ts, useTransacoesSummary.test.ts written and failing — acceptance gates for Wave 1 plans
 
 ### Pending Todos
 
@@ -108,6 +111,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-30T09:38:33.103Z
-Stopped at: Phase 3 context gathered
-Resume file: .planning/phases/03-controle-financeiro-core/03-CONTEXT.md
+Last session: 2026-06-30T15:26:09.987Z
+Stopped at: Completed 03-01-PLAN.md
+Resume file: None
