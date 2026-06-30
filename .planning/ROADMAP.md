@@ -113,7 +113,15 @@ Plans:
   3. Dashboard exibe saldo do mes, total de entradas, total de saidas e lucro do mes corrente com dados atualizados apos cada lancamento
   4. TransactionList exibe historico de transacoes com filtro por mes; cada item mostra valor, categoria, tipo PF/PJ e data
 
-**Plans**: TBD
+**Plans**: 6 plans
+Plans:
+- [ ] 03-01-PLAN.md — Wave 0: Install shadcn Drawer + Skeleton; write 3 failing test stubs (TDD Red)
+- [ ] 03-02-PLAN.md — Wave 1a: categories.ts + transacao.service.ts + service tests GREEN
+- [ ] 03-03-PLAN.md — Wave 1b: useCurrencyInput.ts + tests GREEN + financas.store.ts
+- [ ] 03-04-PLAN.md — Wave 2: useTransacoes.ts + useTransacoesSummary.ts + summary tests GREEN
+- [ ] 03-05-PLAN.md — Wave 3: TransactionSheet.tsx (create + edit + delete bottom-sheet)
+- [ ] 03-06-PLAN.md — Wave 4: InicioTab + FinancasTab + FAB + AppShell + human UAT checkpoint
+
 **UI hint**: yes
 
 ### Phase 4: Inteligencia de Faturamento
