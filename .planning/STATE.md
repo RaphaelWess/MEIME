@@ -5,10 +5,10 @@ milestone_name: milestone
 current_phase: 03
 current_phase_name: controle-financeiro-core
 status: phase_complete
-stopped_at: Completed 03-06-PLAN.md — Phase 3 Controle Financeiro Core complete
-last_updated: "2026-06-30T20:00:00.000Z"
+stopped_at: Phase 4 UI-SPEC approved
+last_updated: "2026-06-30T17:28:08.636Z"
 last_activity: 2026-06-30
-last_activity_desc: Completed Plan 03-06 (InicioTab + FinancasTab + AppShell wiring — human UAT approved); Phase 3 complete
+last_activity_desc: Completed Plan 03-06 (InicioTab + FinancasTab + AppShell wiring; UAT approved)
 progress:
   total_phases: 10
   completed_phases: 3
@@ -126,6 +126,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-30T16:49:24.408Z
-Stopped at: Completed 03-06-PLAN.md — Phase 3 Controle Financeiro Core complete
-Resume file: None
+Last session: 2026-06-30T17:28:08.623Z
+Stopped at: Phase 4 UI-SPEC approved
+Resume file: .planning/phases/04-inteligencia-de-faturamento/04-UI-SPEC.md
