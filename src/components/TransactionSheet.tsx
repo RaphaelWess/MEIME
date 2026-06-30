@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useQueryClient } from '@tanstack/react-query'
 import {
   Drawer,
@@ -9,7 +9,6 @@ import {
 } from '@/components/ui/drawer'
 import {
   AlertDialog,
-  AlertDialogTrigger,
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -61,6 +60,9 @@ export function TransactionSheet({ open, onOpenChange, transaction }: Transactio
   const [tipoPessoa, setTipoPessoa] = useState<'PF' | 'PJ' | null>(null)
   const [descricao, setDescricao] = useState<string>('')
   const [error, setError] = useState<string | null>(null)
+  const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false)
+  // Capture transaction id before closing the Drawer (closing clears editingTransaction in store)
+  const pendingDeleteId = useRef<string | null>(null)
 
   // Reset / initialize fields when sheet opens or transaction changes (D-05)
   useEffect(() => {
@@ -139,14 +141,16 @@ export function TransactionSheet({ open, onOpenChange, transaction }: Transactio
   }
 
   async function handleDelete() {
-    if (!isEditing) return
+    const idToDelete = pendingDeleteId.current
+    if (!idToDelete) return
     setError(null)
 
     try {
-      await transacaoService.delete(transaction.id)
+      await transacaoService.delete(idToDelete)
       // D-21: invalidate namespace only
       queryClient.invalidateQueries({ queryKey: ['transacoes'] })
-      onOpenChange(false)
+      setDeleteConfirmOpen(false)
+      pendingDeleteId.current = null
     } catch {
       setError('Nao foi possivel excluir. Tente novamente.')
     }
@@ -155,6 +159,7 @@ export function TransactionSheet({ open, onOpenChange, transaction }: Transactio
   const categorias = tipo === 'entrada' ? CATEGORIAS_ENTRADA : CATEGORIAS_SAIDA
 
   return (
+    <>
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent>
         <DrawerHeader>
@@ -320,35 +325,42 @@ export function TransactionSheet({ open, onOpenChange, transaction }: Transactio
             Salvar
           </button>
 
-          {/* Excluir — D-19: only visible in edit mode, wrapped in AlertDialog */}
+          {/* Excluir — D-19: close Drawer first, then open AlertDialog.
+              vaul blocks pointer-events while the drawer is open, so the confirm
+              dialog must only appear after the drawer is fully closed. */}
           {isEditing && (
-            <AlertDialog>
-              <AlertDialogTrigger
-                className="inline-flex w-full items-center justify-center rounded-md border border-red-300 bg-background px-4 py-2 text-sm font-medium text-red-600 ring-offset-background transition-colors hover:bg-red-50 hover:border-red-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-              >
-                Excluir lancamento
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Excluir esta transacao?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    Esta acao nao pode ser desfeita.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                  <AlertDialogAction
-                    className="bg-red-600 text-white hover:bg-red-700"
-                    onClick={handleDelete}
-                  >
-                    Excluir
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+            <button
+              type="button"
+              onClick={() => { pendingDeleteId.current = transaction?.id ?? null; onOpenChange(false); setDeleteConfirmOpen(true) }}
+              className="inline-flex w-full items-center justify-center rounded-md border border-red-300 bg-background px-4 py-2 text-sm font-medium text-red-600 transition-colors hover:bg-red-50 hover:border-red-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            >
+              Excluir lancamento
+            </button>
           )}
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
+
+    {/* AlertDialog rendered as sibling of Drawer — outside vaul's portal hierarchy (D-19) */}
+    <AlertDialog open={deleteConfirmOpen} onOpenChange={setDeleteConfirmOpen}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Excluir esta transacao?</AlertDialogTitle>
+          <AlertDialogDescription>
+            Esta acao nao pode ser desfeita.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancelar</AlertDialogCancel>
+          <AlertDialogAction
+            className="bg-red-600 text-white hover:bg-red-700"
+            onClick={handleDelete}
+          >
+            Excluir
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+    </>
   )
 }

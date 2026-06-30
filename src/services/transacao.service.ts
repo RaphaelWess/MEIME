@@ -98,9 +98,12 @@ export const transacaoService = {
       throw new Error('Data invalida')
     }
 
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) throw new Error('Nao autenticado')
+
     const { data, error } = await supabase
       .from('transacoes')
-      .insert(input)
+      .insert({ ...input, user_id: user.id })
       .select()
       .single()
 
