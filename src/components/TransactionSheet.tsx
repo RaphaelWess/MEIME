@@ -46,9 +46,11 @@ export interface TransactionSheetProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   transaction?: Transacao
+  /** Default date for create mode — uses selected month/year from FinancasTab. Falls back to today. */
+  defaultDate?: string
 }
 
-export function TransactionSheet({ open, onOpenChange, transaction }: TransactionSheetProps) {
+export function TransactionSheet({ open, onOpenChange, transaction, defaultDate }: TransactionSheetProps) {
   const queryClient = useQueryClient()
   const isEditing = transaction !== undefined
 
@@ -81,12 +83,12 @@ export function TransactionSheet({ open, onOpenChange, transaction }: Transactio
       setTipo('entrada')
       setCents(0)
       setCategoria(CATEGORIAS_ENTRADA[0])
-      setData(new Date().toISOString().slice(0, 10))
+      setData(defaultDate ?? new Date().toISOString().slice(0, 10))
       setTipoPessoa(null)
       setDescricao('')
     }
     setError(null)
-  }, [open, transaction, setCents])
+  }, [open, transaction, setCents, defaultDate])
 
   // When tipo changes, reset categoria to first item of new list (D-09)
   function handleTipoChange(newTipo: 'entrada' | 'saida') {

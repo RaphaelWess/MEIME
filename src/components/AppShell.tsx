@@ -19,7 +19,18 @@ import { TransactionSheet } from '@/components/TransactionSheet'
  * Only rendered inside ProtectedRoute — BottomNav is never visible before login (T-1-03).
  */
 export default function AppShell() {
-  const { sheetOpen, editingTransaction, openSheet, closeSheet } = useFinancasStore()
+  const { sheetOpen, editingTransaction, openSheet, closeSheet, selectedYear, selectedMonth } = useFinancasStore()
+
+  // Build default date for create mode: same day-of-month as today, but in the selected month/year.
+  // Clamps to last day of month (e.g. Feb 30 → Feb 28).
+  const defaultDate = (() => {
+    const todayDay = new Date().getDate()
+    const lastDay = new Date(selectedYear, selectedMonth, 0).getDate()
+    const day = Math.min(todayDay, lastDay)
+    const mm = String(selectedMonth).padStart(2, '0')
+    const dd = String(day).padStart(2, '0')
+    return `${selectedYear}-${mm}-${dd}`
+  })()
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -35,6 +46,7 @@ export default function AppShell() {
         open={sheetOpen}
         onOpenChange={(open) => { if (!open) closeSheet() }}
         transaction={editingTransaction ?? undefined}
+        defaultDate={defaultDate}
       />
     </div>
   )
