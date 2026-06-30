@@ -148,7 +148,25 @@ Plans:
   3. App exibe alertas proativos ao atingir 70%, 90% e 100% do limite — cada alerta tem copy diferenciado explicando a regra aplicavel
   4. Ao ultrapassar R$ 97.200, app exibe alerta especifico sobre zona de desenquadramento obrigatorio imediato com deep-link para portal de desenquadramento
 
-**Plans**: TBD
+**Plans**: 5 plans
+Plans:
+**Wave 1**
+
+- [ ] 04-01-PLAN.md — Wave 0: TDD Red phase — 3 failing test files (faturamento.test.ts, getByYear extension, useFaturamento.test.ts)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 04-02-PLAN.md — Wave 1a: faturamento.ts pure functions + transacaoService.getByYear (tests GREEN)
+- [ ] 04-03-PLAN.md — Wave 1b: useFaturamento hook (tests GREEN)
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 04-04-PLAN.md — Wave 2: FaturamentoGauge + FaturamentoAlert components
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
+- [ ] 04-05-PLAN.md — Wave 3: InicioTab integration + UAT human checkpoint
+
 **UI hint**: yes
 
 ### Phase 5: Calendario de Obrigacoes
@@ -251,7 +269,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 | 1. Fundacao e Infraestrutura | 6/6 | Complete   | 2026-06-29 |
 | 2. Onboarding MEI | 3/4 | In Progress|  |
 | 3. Controle Financeiro Core | 6/6 | Complete   | 2026-06-30 |
-| 4. Inteligencia de Faturamento | 0/TBD | Not started | - |
+| 4. Inteligencia de Faturamento | 0/5 | Not started | - |
 | 5. Calendario de Obrigacoes | 0/TBD | Not started | - |
 | 6. Cobranca PIX | 0/TBD | Not started | - |
 | 7. Importacao e Anexos | 0/TBD | Not started | - |
