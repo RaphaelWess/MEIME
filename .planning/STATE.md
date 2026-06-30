@@ -6,14 +6,14 @@ current_phase: 03
 current_phase_name: controle-financeiro-core
 status: executing
 stopped_at: Completed 03-03-PLAN.md
-last_updated: "2026-06-30T12:40:00.000Z"
+last_updated: "2026-06-30T15:44:25.488Z"
 last_activity: 2026-06-30
-last_activity_desc: Phase 03 Plan 03 complete — useCurrencyInput hook + financas.store
+last_activity_desc: Completed Plan 03-03 (useCurrencyInput + financas.store)
 progress:
   total_phases: 10
   completed_phases: 2
   total_plans: 16
-  completed_plans: 12
+  completed_plans: 14
   percent: 20
 ---
 
@@ -29,7 +29,7 @@ See: .planning/PROJECT.md (updated 2026-06-28)
 ## Current Position
 
 Phase: 03 (controle-financeiro-core) — EXECUTING
-Plan: 4 of 6
+Plan: 5 of 6
 Status: Ready to execute
 Last activity: 2026-06-30 — Completed Plan 03-03 (useCurrencyInput + financas.store)
 
@@ -64,6 +64,7 @@ Progress: [██████████] 100%
 | Phase 03 P01 | 15min | 2 tasks | 5 files |
 | Phase 03 P02 | 15min | 2 tasks | 3 files |
 | Phase 03 P03 | 10min | 2 tasks | 2 files |
+| Phase 03 P04 | 8min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -95,6 +96,9 @@ Recent decisions affecting current work:
 - [Phase 02-02]: ProtectedRoute 3-way guard: authLoading OR empresaLoading first, then user null → /welcome, empresa null → /onboarding
 - [Phase ?]: shadcn Drawer installed via vaul (not @base-ui/react) — no @radix-ui direct imports; vaul is the actual base-nova Drawer primitive
 - [Phase ?]: TDD Red phase: useCurrencyInput.test.ts, transacao.service.test.ts, useTransacoesSummary.test.ts written and failing — acceptance gates for Wave 1 plans
+- [Phase ?]: staleTime 0 on useTransacoes — always refetch on mount (D-20)
+- [Phase ?]: useTransacoesSummary composes useTransacoes internally — no extra Supabase query
+- [Phase ?]: lucro is alias of saldo (same integer centavos value) — MEI terminology D-10
 
 ### Pending Todos
 
@@ -113,6 +117,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-30T12:40:00.000Z
+Last session: 2026-06-30T15:44:03.480Z
 Stopped at: Completed 03-03-PLAN.md
 Resume file: None
