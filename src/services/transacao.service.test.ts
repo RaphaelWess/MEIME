@@ -46,6 +46,26 @@ beforeEach(() => {
 })
 
 describe('transacaoService.getByMonth', () => {
+  // Helper: build a chain where the SECOND .order() call resolves with the given result.
+  // Service call chain: select('*').gte(from).lte(to).order(date).order(created_at)
+  // First .order() returns an intermediate chain; second .order() resolves the promise.
+  function buildGetByMonthChain(resolvedValue: { data: unknown; error: unknown }) {
+    // Innermost chain: second .order() call resolves
+    const innerChain = buildChain()
+    innerChain.order.mockResolvedValue(resolvedValue)
+
+    // Middle chain: first .order() returns innerChain
+    const middleChain = buildChain()
+    middleChain.order.mockReturnValue(innerChain)
+
+    // Outer chain: .lte() returns middleChain; .gte() returns itself for select chain
+    const outerChain = buildChain()
+    outerChain.lte.mockReturnValue(middleChain)
+    outerChain.gte.mockReturnValue(outerChain)
+
+    return { outerChain, middleChain, innerChain }
+  }
+
   it('calls supabase.from("transacoes").select("*").gte.lte and returns array', async () => {
     const fakeRows = [
       {
@@ -60,33 +80,20 @@ describe('transacaoService.getByMonth', () => {
         created_at: '2026-06-15T10:00:00Z',
       },
     ]
-    const chain = buildChain()
-    chain.order.mockReturnValue(chain)
-    chain.lte.mockReturnValue(chain)
-    // last call in chain is second .order() which resolves
-    chain.order.mockReturnValueOnce(chain).mockResolvedValueOnce({ data: fakeRows, error: null })
-    // Re-wire the chain so the last call resolves
-    const finalChain = buildChain()
-    finalChain.order.mockResolvedValue({ data: fakeRows, error: null })
-    const chain2 = buildChain()
-    chain2.lte.mockReturnValue(finalChain)
-    chain2.gte.mockReturnValue(chain2)
-    mockSupabase.from.mockReturnValue(chain2)
+    const { outerChain } = buildGetByMonthChain({ data: fakeRows, error: null })
+    mockSupabase.from.mockReturnValue(outerChain)
 
     const result = await transacaoService.getByMonth(2026, 6)
 
     expect(mockSupabase.from).toHaveBeenCalledWith('transacoes')
-    expect(chain2.select).toHaveBeenCalledWith('*')
+    expect(outerChain.select).toHaveBeenCalledWith('*')
     expect(Array.isArray(result)).toBe(true)
+    expect(result).toEqual(fakeRows)
   })
 
   it('returns [] when supabase returns null data', async () => {
-    const chain = buildChain()
-    const finalChain = buildChain()
-    finalChain.order.mockResolvedValue({ data: null, error: null })
-    chain.lte.mockReturnValue(finalChain)
-    chain.gte.mockReturnValue(chain)
-    mockSupabase.from.mockReturnValue(chain)
+    const { outerChain } = buildGetByMonthChain({ data: null, error: null })
+    mockSupabase.from.mockReturnValue(outerChain)
 
     const result = await transacaoService.getByMonth(2026, 6)
 
@@ -94,12 +101,8 @@ describe('transacaoService.getByMonth', () => {
   })
 
   it('throws when supabase returns error', async () => {
-    const chain = buildChain()
-    const finalChain = buildChain()
-    finalChain.order.mockResolvedValue({ data: null, error: new Error('DB error') })
-    chain.lte.mockReturnValue(finalChain)
-    chain.gte.mockReturnValue(chain)
-    mockSupabase.from.mockReturnValue(chain)
+    const { outerChain } = buildGetByMonthChain({ data: null, error: new Error('DB error') })
+    mockSupabase.from.mockReturnValue(outerChain)
 
     await expect(transacaoService.getByMonth(2026, 6)).rejects.toThrow('DB error')
   })
