@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Fundacao e Infraestrutura** - Schema Supabase + RLS, auth, scaffold React/Vite/Tailwind, PWA manifest, AppShell, anti-pause, privacidade (completed 2026-06-29)
 - [ ] **Phase 2: Onboarding MEI** - Busca CNPJ via BrasilAPI, salva empresa_mei, perfil do MEI completo
-- [ ] **Phase 3: Controle Financeiro Core** - TransactionForm com mascara BRL, TransactionList, dashboard saldo+fluxo do mes
+- [x] **Phase 3: Controle Financeiro Core** - TransactionForm com mascara BRL, TransactionList, dashboard saldo+fluxo do mes (completed 2026-06-30)
 - [ ] **Phase 4: Inteligência de Faturamento** - FaturamentoGauge com limite proporcional + Caminhoneiro, projecao, alertas 70/90/100/97200
 - [ ] **Phase 5: Calendario de Obrigacoes** - DAS mensal + DASN anual auto-gerados, deep-links PGMEI, mark-as-paid, alertas
 - [ ] **Phase 6: Cobranca PIX** - brcode.ts CRC-16 correto, PixQrDisplay, copia-e-cola, share WhatsApp, conciliacao manual
@@ -113,7 +113,7 @@ Plans:
   3. Dashboard exibe saldo do mes, total de entradas, total de saidas e lucro do mes corrente com dados atualizados apos cada lancamento
   4. TransactionList exibe historico de transacoes com filtro por mes; cada item mostra valor, categoria, tipo PF/PJ e data
 
-**Plans**: 5/6 plans executed
+**Plans**: 6/6 plans complete
 Plans:
 **Wave 1**
 
@@ -131,7 +131,7 @@ Plans:
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
-- [ ] 03-06-PLAN.md — Wave 4: InicioTab + FinancasTab + FAB + AppShell + human UAT checkpoint
+- [x] 03-06-PLAN.md — Wave 4: InicioTab + FinancasTab + FAB + AppShell + human UAT checkpoint
 
 **UI hint**: yes
 
@@ -250,7 +250,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 |-------|----------------|--------|-----------|
 | 1. Fundacao e Infraestrutura | 6/6 | Complete   | 2026-06-29 |
 | 2. Onboarding MEI | 3/4 | In Progress|  |
-| 3. Controle Financeiro Core | 5/6 | In Progress|  |
+| 3. Controle Financeiro Core | 6/6 | Complete   | 2026-06-30 |
 | 4. Inteligencia de Faturamento | 0/TBD | Not started | - |
 | 5. Calendario de Obrigacoes | 0/TBD | Not started | - |
 | 6. Cobranca PIX | 0/TBD | Not started | - |

@@ -4,17 +4,17 @@ milestone: v1.0
 milestone_name: milestone
 current_phase: 03
 current_phase_name: controle-financeiro-core
-status: executing
-stopped_at: Completed 03-05-PLAN.md
-last_updated: "2026-06-30T18:20:00.000Z"
+status: phase_complete
+stopped_at: Completed 03-06-PLAN.md — Phase 3 Controle Financeiro Core complete
+last_updated: "2026-06-30T20:00:00.000Z"
 last_activity: 2026-06-30
-last_activity_desc: Completed Plan 03-05 (TransactionSheet — bottom-sheet CRUD form)
+last_activity_desc: Completed Plan 03-06 (InicioTab + FinancasTab + AppShell wiring — human UAT approved); Phase 3 complete
 progress:
   total_phases: 10
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 16
-  completed_plans: 15
-  percent: 22
+  completed_plans: 16
+  percent: 30
 ---
 
 # Project State
@@ -28,10 +28,10 @@ See: .planning/PROJECT.md (updated 2026-06-28)
 
 ## Current Position
 
-Phase: 03 (controle-financeiro-core) — EXECUTING
-Plan: 6 of 6
-Status: Ready to execute Plan 06 (AppShell integration)
-Last activity: 2026-06-30 — Completed Plan 03-05 (TransactionSheet bottom-sheet CRUD form)
+Phase: 03 (controle-financeiro-core) — COMPLETE
+Plan: 6 of 6 (all done)
+Status: Phase 3 complete — ready for Phase 4 (Inteligencia de Faturamento)
+Last activity: 2026-06-30 — Completed Plan 03-06 (InicioTab + FinancasTab + AppShell wiring; UAT approved)
 
 Progress: [██████████] 100%
 
@@ -66,6 +66,7 @@ Progress: [██████████] 100%
 | Phase 03 P03 | 10min | 2 tasks | 2 files |
 | Phase 03 P04 | 8min | 2 tasks | 2 files |
 | Phase 03 P05 | 10min | 1 tasks | 1 files |
+| Phase 03 P06 | 45min | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -103,6 +104,10 @@ Recent decisions affecting current work:
 - [Phase 03-05]: TransactionSheet does NOT import useFinancasStore — open/onOpenChange/transaction come as props from AppShell (Pitfall 4)
 - [Phase 03-05]: queryKey: ['transacoes'] namespace only in invalidateQueries — never ['transacoes', year, month] (D-21)
 - [Phase 03-05]: PF/PJ toggle clicking already-selected clears to null (FIN-02 — field is optional)
+- [Phase ?]: AppShell mounts TransactionSheet outside Outlet — vaul sheet survives tab navigation (Pitfall 4)
+- [Phase ?]: AlertDialog must live outside vaul Drawer portal — close Drawer first then open AlertDialog
+- [Phase ?]: user_id must be explicitly set in transacaoService.create insert — Supabase RLS does not auto-inject
+- [Phase ?]: [Phase 03-06]: Phase 3 Controle Financeiro Core complete — all 6 plans done, FIN-01/FIN-02/FIN-05 met, UAT approved
 
 ### Pending Todos
 
@@ -121,6 +126,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-30T18:20:00.000Z
-Stopped at: Completed 03-05-PLAN.md
+Last session: 2026-06-30T16:49:24.408Z
+Stopped at: Completed 03-06-PLAN.md — Phase 3 Controle Financeiro Core complete
 Resume file: None
