@@ -68,6 +68,33 @@ export const transacaoService = {
   },
 
   /**
+   * Returns all ENTRADA transactions for the given calendar year, ordered by date ascending.
+   * Filters tipo='entrada' at the DB layer — saídas are irrelevant for faturamento (D-04).
+   * D-08: new method per architecture decision (service layer extension).
+   * T-04-02: validates year range 2020–2050 before querying (V5 input validation, RESEARCH.md).
+   * T-04-01: RLS policy `using ((select auth.uid()) = user_id)` enforces user isolation (inherited).
+   * Returns empty array if no rows exist (never null).
+   */
+  getByYear: async (year: number): Promise<Transacao[]> => {
+    if (year < 2020 || year > 2050) throw new Error('Ano inválido')
+
+    const from = `${year}-01-01`
+    const to   = `${year}-12-31`
+
+    const { data, error } = await supabase
+      .from('transacoes')
+      .select('*')
+      .eq('tipo', 'entrada')
+      .gte('data', from)
+      .lte('data', to)
+      .order('data', { ascending: true })
+      .order('created_at', { ascending: true })
+
+    if (error) throw error
+    return data ?? []
+  },
+
+  /**
    * Inserts a new transaction after validating all security constraints.
    * Throws typed errors for invalid input (T-02, T-03, T-05).
    * Returns the persisted row including server-generated id.

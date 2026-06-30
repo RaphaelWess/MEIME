@@ -4,6 +4,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 vi.mock('@/lib/supabase', () => ({
   supabase: {
     from: vi.fn(),
+    auth: {
+      getUser: vi.fn(),
+    },
   },
 }))
 
@@ -11,7 +14,7 @@ import { supabase } from '@/lib/supabase'
 import { transacaoService } from './transacao.service'
 
 // Typed mock helper
-const mockSupabase = supabase as { from: ReturnType<typeof vi.fn> }
+const mockSupabase = supabase as { from: ReturnType<typeof vi.fn>; auth: { getUser: ReturnType<typeof vi.fn> } }
 
 // Builder for fluent Supabase mock chains
 // Extends the empresa.service.test.ts pattern with insert, update, delete, eq, gte, lte, order, single
@@ -123,12 +126,13 @@ describe('transacaoService.create', () => {
     const chain = buildChain()
     chain.single.mockResolvedValue({ data: savedRow, error: null })
     mockSupabase.from.mockReturnValue(chain)
+    mockSupabase.auth.getUser.mockResolvedValue({ data: { user: { id: 'user-uuid' } } })
 
     const result = await transacaoService.create(validInput)
 
     expect(result).toEqual(savedRow)
     expect(mockSupabase.from).toHaveBeenCalledWith('transacoes')
-    expect(chain.insert).toHaveBeenCalledWith(validInput)
+    expect(chain.insert).toHaveBeenCalledWith({ ...validInput, user_id: 'user-uuid' })
     expect(chain.select).toHaveBeenCalled()
     expect(chain.single).toHaveBeenCalled()
   })
@@ -139,6 +143,7 @@ describe('transacaoService.create', () => {
     const chain = buildChain()
     chain.single.mockResolvedValue({ data: savedRow, error: null })
     mockSupabase.from.mockReturnValue(chain)
+    mockSupabase.auth.getUser.mockResolvedValue({ data: { user: { id: 'user-uuid' } } })
 
     const result = await transacaoService.create(pfInput)
 
@@ -151,6 +156,7 @@ describe('transacaoService.create', () => {
     const chain = buildChain()
     chain.single.mockResolvedValue({ data: savedRow, error: null })
     mockSupabase.from.mockReturnValue(chain)
+    mockSupabase.auth.getUser.mockResolvedValue({ data: { user: { id: 'user-uuid' } } })
 
     const result = await transacaoService.create(pjInput)
 
