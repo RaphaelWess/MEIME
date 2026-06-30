@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { useCnpjMask } from '@/hooks/useCnpjMask'
 import { useOnboardingCnpj } from '@/hooks/useOnboardingCnpj'
+import { isValidCnpj } from '@/utils/cnpj'
 import { empresaService, type SaveEmpresaInput } from '@/services/empresa.service'
 import { useEmpresaStore } from '@/stores/empresa.store'
 import { useAuthStore } from '@/stores/auth.store'
@@ -79,8 +80,11 @@ export default function OnboardingPage() {
     }
   }
 
-  // Error message from CNPJ lookup
-  const cnpjErrorMessage = isError
+  // Error message from CNPJ lookup (API error) or local validation failure
+  const cnpjFormatInvalid = raw.length === 14 && !isValidCnpj(raw)
+  const cnpjErrorMessage = cnpjFormatInvalid
+    ? 'CNPJ inválido. Verifique os dígitos ou preencha os dados manualmente.'
+    : isError
     ? error?.message === 'CNPJ_NOT_FOUND'
       ? 'CNPJ não encontrado. Verifique o número ou preencha os dados manualmente.'
       : 'Não foi possível buscar os dados. Preencha manualmente.'
