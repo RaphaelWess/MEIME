@@ -115,11 +115,22 @@ Plans:
 
 **Plans**: 6 plans
 Plans:
+**Wave 1**
+
 - [ ] 03-01-PLAN.md — Wave 0: Install shadcn Drawer + Skeleton; write 3 failing test stubs (TDD Red)
 - [ ] 03-02-PLAN.md — Wave 1a: categories.ts + transacao.service.ts + service tests GREEN
 - [ ] 03-03-PLAN.md — Wave 1b: useCurrencyInput.ts + tests GREEN + financas.store.ts
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
 - [ ] 03-04-PLAN.md — Wave 2: useTransacoes.ts + useTransacoesSummary.ts + summary tests GREEN
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
 - [ ] 03-05-PLAN.md — Wave 3: TransactionSheet.tsx (create + edit + delete bottom-sheet)
+
+**Wave 4** *(blocked on Wave 3 completion)*
+
 - [ ] 03-06-PLAN.md — Wave 4: InicioTab + FinancasTab + FAB + AppShell + human UAT checkpoint
 
 **UI hint**: yes
