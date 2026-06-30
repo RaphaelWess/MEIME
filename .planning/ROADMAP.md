@@ -113,7 +113,7 @@ Plans:
   3. Dashboard exibe saldo do mes, total de entradas, total de saidas e lucro do mes corrente com dados atualizados apos cada lancamento
   4. TransactionList exibe historico de transacoes com filtro por mes; cada item mostra valor, categoria, tipo PF/PJ e data
 
-**Plans**: 4/6 plans executed
+**Plans**: 5/6 plans executed
 Plans:
 **Wave 1**
 
@@ -127,7 +127,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 03-05-PLAN.md — Wave 3: TransactionSheet.tsx (create + edit + delete bottom-sheet)
+- [x] 03-05-PLAN.md — Wave 3: TransactionSheet.tsx (create + edit + delete bottom-sheet)
 
 **Wave 4** *(blocked on Wave 3 completion)*
 
@@ -250,7 +250,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 |-------|----------------|--------|-----------|
 | 1. Fundacao e Infraestrutura | 6/6 | Complete   | 2026-06-29 |
 | 2. Onboarding MEI | 3/4 | In Progress|  |
-| 3. Controle Financeiro Core | 4/6 | In Progress|  |
+| 3. Controle Financeiro Core | 5/6 | In Progress|  |
 | 4. Inteligencia de Faturamento | 0/TBD | Not started | - |
 | 5. Calendario de Obrigacoes | 0/TBD | Not started | - |
 | 6. Cobranca PIX | 0/TBD | Not started | - |

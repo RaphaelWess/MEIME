@@ -5,16 +5,16 @@ milestone_name: milestone
 current_phase: 03
 current_phase_name: controle-financeiro-core
 status: executing
-stopped_at: Completed 03-03-PLAN.md
-last_updated: "2026-06-30T15:44:25.488Z"
+stopped_at: Completed 03-05-PLAN.md
+last_updated: "2026-06-30T18:20:00.000Z"
 last_activity: 2026-06-30
-last_activity_desc: Completed Plan 03-03 (useCurrencyInput + financas.store)
+last_activity_desc: Completed Plan 03-05 (TransactionSheet — bottom-sheet CRUD form)
 progress:
   total_phases: 10
   completed_phases: 2
   total_plans: 16
-  completed_plans: 14
-  percent: 20
+  completed_plans: 15
+  percent: 22
 ---
 
 # Project State
@@ -29,9 +29,9 @@ See: .planning/PROJECT.md (updated 2026-06-28)
 ## Current Position
 
 Phase: 03 (controle-financeiro-core) — EXECUTING
-Plan: 5 of 6
-Status: Ready to execute
-Last activity: 2026-06-30 — Completed Plan 03-03 (useCurrencyInput + financas.store)
+Plan: 6 of 6
+Status: Ready to execute Plan 06 (AppShell integration)
+Last activity: 2026-06-30 — Completed Plan 03-05 (TransactionSheet bottom-sheet CRUD form)
 
 Progress: [██████████] 100%
 
@@ -65,6 +65,7 @@ Progress: [██████████] 100%
 | Phase 03 P02 | 15min | 2 tasks | 3 files |
 | Phase 03 P03 | 10min | 2 tasks | 2 files |
 | Phase 03 P04 | 8min | 2 tasks | 2 files |
+| Phase 03 P05 | 10min | 1 tasks | 1 files |
 
 ## Accumulated Context
 
@@ -99,6 +100,9 @@ Recent decisions affecting current work:
 - [Phase ?]: staleTime 0 on useTransacoes — always refetch on mount (D-20)
 - [Phase ?]: useTransacoesSummary composes useTransacoes internally — no extra Supabase query
 - [Phase ?]: lucro is alias of saldo (same integer centavos value) — MEI terminology D-10
+- [Phase 03-05]: TransactionSheet does NOT import useFinancasStore — open/onOpenChange/transaction come as props from AppShell (Pitfall 4)
+- [Phase 03-05]: queryKey: ['transacoes'] namespace only in invalidateQueries — never ['transacoes', year, month] (D-21)
+- [Phase 03-05]: PF/PJ toggle clicking already-selected clears to null (FIN-02 — field is optional)
 
 ### Pending Todos
 
@@ -117,6 +121,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-30T15:44:03.480Z
-Stopped at: Completed 03-03-PLAN.md
+Last session: 2026-06-30T18:20:00.000Z
+Stopped at: Completed 03-05-PLAN.md
 Resume file: None
