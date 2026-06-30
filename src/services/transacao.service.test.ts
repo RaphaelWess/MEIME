@@ -202,3 +202,82 @@ describe('transacaoService.delete', () => {
     expect(chain.eq).toHaveBeenCalledWith('id', id)
   })
 })
+
+describe('transacaoService.getByYear', () => {
+  // getByYear chain: from('transacoes').select('*').eq('tipo','entrada').gte(from).lte(to).order('data',{ascending:true})
+  // Chain wiring: terminal is the single .order() at the end
+  function buildGetByYearChain(resolvedValue: { data: unknown; error: unknown }) {
+    // Innermost chain: .order() resolves (terminal)
+    const innerChain = buildChain()
+    innerChain.order.mockResolvedValue(resolvedValue)
+
+    // lteChain: .order() returns innerChain
+    const lteChain = buildChain()
+    lteChain.order.mockReturnValue(innerChain)
+
+    // gteChain: .lte() returns lteChain
+    const gteChain = buildChain()
+    gteChain.lte.mockReturnValue(lteChain)
+
+    // eqChain: .gte() returns gteChain
+    const eqChain = buildChain()
+    eqChain.gte.mockReturnValue(gteChain)
+
+    // selectChain: .eq() returns eqChain
+    const selectChain = buildChain()
+    selectChain.eq.mockReturnValue(eqChain)
+
+    return { selectChain }
+  }
+
+  it('returns array of entrada transactions for the year', async () => {
+    const fakeRow = {
+      id: 'u1',
+      user_id: 'u1',
+      tipo: 'entrada' as const,
+      valor: 500_000,
+      data: '2026-03-15',
+      categoria: null,
+      descricao: null,
+      tipo_pessoa: null,
+      created_at: '',
+    }
+    const { selectChain } = buildGetByYearChain({ data: [fakeRow], error: null })
+    const fromChain = buildChain()
+    fromChain.select.mockReturnValue(selectChain)
+    mockSupabase.from.mockReturnValue(fromChain)
+
+    const result = await transacaoService.getByYear(2026)
+
+    expect(Array.isArray(result)).toBe(true)
+    expect(result).toHaveLength(1)
+  })
+
+  it('returns empty array when no rows', async () => {
+    const { selectChain } = buildGetByYearChain({ data: null, error: null })
+    const fromChain = buildChain()
+    fromChain.select.mockReturnValue(selectChain)
+    mockSupabase.from.mockReturnValue(fromChain)
+
+    const result = await transacaoService.getByYear(2026)
+
+    expect(result).toEqual([])
+  })
+
+  it('throws when Supabase returns error', async () => {
+    const { selectChain } = buildGetByYearChain({ data: null, error: new Error('db error') })
+    const fromChain = buildChain()
+    fromChain.select.mockReturnValue(selectChain)
+    mockSupabase.from.mockReturnValue(fromChain)
+
+    await expect(transacaoService.getByYear(2026)).rejects.toThrow('db error')
+  })
+
+  it('throws for year below 2020', async () => {
+    await expect(transacaoService.getByYear(2019)).rejects.toThrow()
+  })
+
+  it('throws for year above 2050', async () => {
+    await expect(transacaoService.getByYear(2051)).rejects.toThrow()
+  })
+})
